@@ -1,70 +1,141 @@
-# Getting Started with Create React App
+# Ticket Support System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack ticket support system built with React frontend and Node.js backend.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- User authentication (login/register)
+- Create and manage support tickets
+- Comment system for tickets
+- Role-based access (customer, agent, admin)
+- Real-time ticket status updates
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Frontend:**
+- React
+- React Router
+- Context API for state management
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Backend:**
+- Node.js
+- Express.js
+- MongoDB with Mongoose
+- JWT Authentication
+- bcryptjs for password hashing
 
-### `npm test`
+## Setup Instructions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB Atlas account or local MongoDB instance
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd ticketsupportsystem
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Install all dependencies:
+```bash
+npm run install-deps
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Set up environment variables:
+   - Copy `backend/.env.example` to `backend/.env`
+   - Update the MongoDB URI and other variables
 
-### `npm run eject`
+4. Start the application:
+```bash
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This will start:
+- Backend server on http://localhost:5000
+- Frontend application on http://localhost:3000
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Individual Commands
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**Backend only:**
+```bash
+npm run server
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**Frontend only:**
+```bash
+npm run client
+```
 
-## Learn More
+## API Endpoints
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Authentication
+- POST `/api/auth/register` - Register new user
+- POST `/api/auth/login` - Login user
+- GET `/api/auth/profile` - Get user profile
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Tickets
+- GET `/api/tickets` - Get all tickets
+- POST `/api/tickets` - Create new ticket
+- GET `/api/tickets/:id` - Get ticket by ID
+- PUT `/api/tickets/:id` - Update ticket
+- POST `/api/tickets/:id/comments` - Add comment to ticket
 
-### Code Splitting
+## Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+ticketsupportsystem/
+├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   └── server.js
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── context/
+│   │   └── services/
+│   └── public/
+└── package.json
+```
 
-### Analyzing the Bundle Size
+## Troubleshooting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Common Issues
 
-### Making a Progressive Web App
+1. **Proxy Errors**: Make sure both backend and frontend are running. The frontend proxy is configured to redirect API calls to the backend.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+2. **Connection Refused**: Ensure the backend server is running on port 5000 before starting the frontend.
 
-### Advanced Configuration
+3. **ESLint Warnings**: The project is configured to handle common ESLint rules for React development.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Environment Setup
 
-### Deployment
+Make sure your `.env` file in the backend folder contains:
+```
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+DB_PASSWORD=your_database_password
+JWT_SECRET=your_jwt_secret_key
+NODE_ENV=development
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Running in Development
 
-### `npm run build` fails to minify
+1. Start backend first:
+```bash
+cd backend && npm run dev
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+2. Then start frontend:
+```bash
+cd frontend && npm start
+```
+
+Or use the root command to start both:
+```bash
+npm start
+```
