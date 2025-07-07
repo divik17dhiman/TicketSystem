@@ -1,0 +1,7 @@
+# Create a .env file in the frontend directory with these variables:
+
+# API Configuration
+REACT_APP_API_URL=https://your-backend-domain.onrender.com/api
+
+# For development, use:
+# REACT_APP_API_URL=http://localhost:5000/api 

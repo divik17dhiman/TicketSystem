@@ -4,24 +4,35 @@ const Card = ({
   children,
   className = '',
   padding = 'md',
+  elevation = 'default',
   ...props
 }) => {
   const paddingClasses = {
     none: '',
-    sm: 'p-4',
-    md: 'p-6',
-    lg: 'p-8'
+    sm: 'var(--space-4)',
+    md: 'var(--space-6)',
+    lg: 'var(--space-8)'
+  };
+
+  const elevationStyles = {
+    none: 'none',
+    sm: 'var(--shadow-sm)',
+    default: 'var(--shadow)',
+    md: 'var(--shadow-md)',
+    lg: 'var(--shadow-lg)'
   };
 
   return (
     <div
-      className={`ticket-card ${paddingClasses[padding]} ${className}`}
+      className={`card ${className}`}
       style={{
-        background: 'white',
-        borderRadius: '8px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-        border: 'none',
-        cursor: 'default'
+        background: 'var(--surface)',
+        borderRadius: 'var(--radius)',
+        boxShadow: elevationStyles[elevation],
+        border: '1px solid var(--border-light)',
+        padding: paddingClasses[padding],
+        transition: 'all var(--transition)',
+        ...props.style
       }}
       {...props}
     >

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ApiService from '../services/api';
 import ImageModal from './ImageModal';
+import { getImageUrl } from '../utils/api';
 
 const ImageUpload = ({ onImagesUploaded, multiple = false, existingImages = [] }) => {
   const [uploading, setUploading] = useState(false);
@@ -72,7 +73,7 @@ const ImageUpload = ({ onImagesUploaded, multiple = false, existingImages = [] }
             {uploadedImages.map((image, index) => (
               <div key={index} style={{ position: 'relative' }}>
                 <img
-                  src={`http://localhost:5000${image.url}`}
+                  src={getImageUrl(image.url)}
                   alt={image.originalName}
                   onClick={() => openImageModal(index)}
                   style={{

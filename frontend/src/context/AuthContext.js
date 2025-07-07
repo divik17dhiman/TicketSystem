@@ -111,12 +111,29 @@ export const AuthProvider = ({ children }) => {
     dispatch({ type: 'LOGOUT' });
   };
 
+  // Guest login function for UI testing
+  const guestLogin = () => {
+    const guestUser = {
+      token: 'guest-token-' + Date.now(),
+      user: {
+        id: 'guest-user-id',
+        name: 'Guest User',
+        email: 'guest@example.com',
+        role: 'customer'
+      }
+    };
+    
+    dispatch({ type: 'LOGIN_SUCCESS', payload: guestUser });
+    return { success: true, user: guestUser.user };
+  };
+
   return (
     <AuthContext.Provider value={{
       ...state,
       login,
       register,
-      logout
+      logout,
+      guestLogin
     }}>
       {children}
     </AuthContext.Provider>
