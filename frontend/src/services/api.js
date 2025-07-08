@@ -1,5 +1,5 @@
 // Use environment variable or fallback to localhost for development
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 class ApiService {
   constructor() {
@@ -181,14 +181,14 @@ class ApiService {
 
   // Auth methods
   async register(userData) {
-    return this.request('auth/register', {
+    return this.request('/auth/register', {
       method: 'POST',
       body: JSON.stringify(userData)
     });
   }
 
   async login(credentials) {
-    return this.request('auth/login', {
+    return this.request('/auth/login', {
       method: 'POST',
       body: JSON.stringify(credentials)
     });
