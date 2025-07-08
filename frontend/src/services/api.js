@@ -181,14 +181,14 @@ class ApiService {
 
   // Auth methods
   async register(userData) {
-    return this.request('/auth/register', {
+    return this.request('auth/register', {
       method: 'POST',
       body: JSON.stringify(userData)
     });
   }
 
   async login(credentials) {
-    return this.request('/auth/login', {
+    return this.request('auth/login', {
       method: 'POST',
       body: JSON.stringify(credentials)
     });
